@@ -31,7 +31,7 @@ def listener(callback):
     tg.receiver.start()
     tg.receiver.message(_loop(callback))
 
-def history(usr, limit=10, offset=0):
+def history(usr, limit=10, offset=0, **d):
     logging.debug(
         f"History from {usr}, limit:offset={limit}:{offset}")
-    return tg.sender.history(usr,limit,offset)
+    return tg.sender.history(usr,limit,offset,**d)
