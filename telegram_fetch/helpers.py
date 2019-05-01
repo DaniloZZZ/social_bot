@@ -4,6 +4,16 @@ def init_logging():
     logging.basicConfig(level=logging.DEBUG)
     return logging
 
+def save_file(fname,txt):
+    with open(fname,'w+') as f:
+        logging.debug(f"writing file {fname}")
+        f.write(txt)
+
+def append_file(fname,txt):
+    with open(fname,'a+') as f:
+        logging.debug(f"appending file {fname}")
+        f.write(txt+'\n')
+
 def cli_args(*a):
     """
     Gets some arguments and
