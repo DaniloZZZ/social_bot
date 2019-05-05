@@ -24,8 +24,9 @@ def main():
         word_dict[key] = set(word_dict[key])
         pairs.append((key, word_dict[key]))
     pairs.sort(key=lambda x:len(x[1]))
-    for p in pairs:
-        print(p)
+    return pairs
 
 if __name__=='__main__':
-    main()
+    pairs = main()
+    for p in pairs:
+        print(p)
