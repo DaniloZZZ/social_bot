@@ -50,6 +50,31 @@ class MessageDataset(Dataset):
         )
         return np.array((word)), np.sum(answer, axis = 0)
 
+class CharacterDataset(Dataset):
+    def __init__(self, path):
+        """
+        Args:
+            path: path to file of messages
+        """
+        self.path=path
+        raw_string = load_from_file(path)
+        self._encoder = OneHotEncoder()
+
+        d = np.array(list(raw_string)).reshape(-1,1)
+        # one-hot encode the data
+        self._encoder.fit(d)
+        self.data = np.array(self._encoder.transform(d).todense())
+        print("data shape:",self.data.shape)
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        char = self.data[idx]
+        #elem = lambda word: self._encoder.transform([[word]]).todense()
+        return char
+
+
 def main():
     filename = sys.argv[1]
     print("loading words")
