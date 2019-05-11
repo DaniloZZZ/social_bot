@@ -11,8 +11,8 @@
 The most natural way to approach this problem is to use some flavour of RNN models.
 There are two kinds of tags right now:
 
-- <MSG>
-- <PEER>
+- \<MSG\>
+- \<PEER\>
 
 Which determine end of message and end of peer message sequence.
 
