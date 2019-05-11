@@ -24,15 +24,14 @@ def main():
     Parses command line arguments
     and calls a telegram api for messages
     """
-    peer, msg_path = cli_args(None, "./messages")
+    peer, msg_path, count, step = cli_args(None, "./messages", 10*1000, 300)
+    count, step = int(count), int(step)
     log.debug(f"using database {msg_path} and user {peer}")
     tg.init(TELEGRAM_CLI_PATH,
             TELEGRAM_KEY_PATH)
     DUMP_FILE = msg_path+'/'+peer
     file_len = lines_in_file(DUMP_FILE)
 
-    step = 300
-    count = 10*1000
     start = file_len
     if peer:
         for offset in range(start,count,step):
